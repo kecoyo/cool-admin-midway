@@ -1,4 +1,3 @@
-import { TianqinTypeEntity } from '../entity/type';
 import { TianqinDataEntity } from '../entity/data';
 import { Config, Provide } from '@midwayjs/core';
 import { BaseService } from '@cool-midway/core';
@@ -13,7 +12,4 @@ import * as _ from 'lodash';
 export class TianqinDataService extends BaseService {
   @InjectEntityModel(TianqinDataEntity)
   tianqinDataEntity: Repository<TianqinDataEntity>;
-
-  @InjectEntityModel(TianqinTypeEntity)
-  tianqinTypeEntity: Repository<TianqinTypeEntity>;
 }
