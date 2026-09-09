@@ -1,0 +1,32 @@
+import { ALL, Body, Inject, Post, Provide } from '@midwayjs/core';
+import { CoolController, BaseController } from '@cool-midway/core';
+import { BaseSysDepartmentEntity } from '../../../entity/sys/department';
+import { BaseSysDepartmentService } from '../../../service/sys/department';
+
+/**
+ * 部门
+ */
+@Provide()
+@CoolController({
+  api: ['add', 'delete', 'update', 'list'],
+  entity: BaseSysDepartmentEntity,
+  service: BaseSysDepartmentService,
+  insertParam: ctx => {
+    return {
+      userId: ctx.admin.userId,
+    };
+  },
+})
+export class BaseDepartmentController extends BaseController {
+  @Inject()
+  baseDepartmentService: BaseSysDepartmentService;
+
+  /**
+   * 部门排序
+   */
+  @Post('/order', { summary: '排序' })
+  async order(@Body(ALL) params: any) {
+    await this.baseDepartmentService.order(params);
+    return this.ok();
+  }
+}
