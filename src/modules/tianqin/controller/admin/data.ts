@@ -8,7 +8,7 @@ import { TianqinDataService } from '../../service/data';
  */
 @Provide()
 @CoolController({
-  api: ['page'],
+  api: ['page', 'info', 'update'],
   entity: TianqinDataEntity,
   service: TianqinDataService,
   pageQueryOp: {
