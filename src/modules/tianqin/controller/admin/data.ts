@@ -14,9 +14,6 @@ import { TianqinDataService } from '../../service/data';
   pageQueryOp: {
     fieldEq: ['trend', 'band', 'status'],
     keyWordLikeFields: ['code', 'name', 'mainSymbol'],
-    addOrderBy: {
-      hourCciValue: 'DESC',
-    },
   },
 })
 export class AdminTianqinDataController extends BaseController {
