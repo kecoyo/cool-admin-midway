@@ -1,5 +1,6 @@
 import { CoolConfig } from '@cool-midway/core';
 import { MidwayConfig } from '@midwayjs/core';
+import * as path from 'path';
 import { entities } from '../entities';
 import { TenantSubscriber } from '../modules/base/db/tenant';
 
@@ -30,6 +31,18 @@ export default {
         subscribers: [TenantSubscriber],
       },
     },
+  },
+  // 配置日志
+  midwayLogger: {
+    default: {
+      level: 'info',
+      dir: path.join(__dirname, '..', '..', 'logs'),
+    },
+  },
+  // 文件上传
+  upload: {
+    // 地址前缀
+    domain: 'http://192.168.0.191:8001',
   },
   cool: {
     // 实体与路径，跟生成代码、前端请求、swagger文档相关 注意：线上不建议开启，以免暴露敏感信息

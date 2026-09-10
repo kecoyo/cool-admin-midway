@@ -36,6 +36,8 @@ export default {
   upload: {
     fileSize: '200mb',
     whitelist: null,
+    // 地址前缀
+    domain: 'http://127.0.0.1:8001',
   },
   // 缓存 可切换成其他缓存如：redis http://www.midwayjs.org/docs/extensions/caching
   cacheManager: {

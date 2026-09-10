@@ -19,7 +19,7 @@ const getKeys = () => {
  * @returns
  */
 export const pDataPath = () => {
-  const dirPath = path.join(os.homedir(), '.cool-admin', md5(getKeys()));
+  const dirPath = path.join(os.homedir(), '.cool-admin');
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
