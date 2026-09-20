@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <App>
-  <TradeUnit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" UnitName="b9000_H1" PreFix="myunit" UnitVersion="1.0.0.0" TradeLock="false" RunLock="false" Expand="false" RefUnitID="">
+  <TradeUnit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" UnitName="[mainSymbol]_H1" PreFix="myunit" UnitVersion="1.0.0.0" TradeLock="false" RunLock="false" Expand="false" RefUnitID="">
     <Goods>
       <G RefID="4e7b9cb6-2243-4018-a56b-4368f49d60ad" lBeginTime="0" lEndTime="0">
-        <GoodsSetting Source="User" Display="On" GoodsName="豆二加权0">
+        <GoodsSetting Source="User" Display="On" GoodsName="[contractName]">
           <DataRangeSetting FinishedStart="0" FinishedEnd="0" SampleValue="1000" SampleRangeUnit="Day" SampleUnitValue="1" EnableSampleEndDate="false">
             <DataRange RangeType="BEGINEND" RangeUnit="0" RangeValue="20220401000000000" Term="Hour" NValue="1" EnableNValue="false">
-              <GoodsKey Goods="b9000" Category="CategoryFutures" Exchange="DCE" nCodeID="6498453282087474824" />
+              <GoodsKey Goods="[mainSymbol]" Category="CategoryFutures" Exchange="DCE" nCodeID="6498453282087474824" />
             </DataRange>
           </DataRangeSetting>
           <TradeSetting LongMargin="7.0000000000000009" ShortMargin="7.0000000000000009" CurrentPercent="0" MarginFlag="PercentOfTotalAccount" CommissionFlag="PercentOfTotalAccount" CommissionOpen="1" CommissionClose="1" CommissionCloseToday="1" SlipPointMode="PointByNum" SlipPointValue="0" />

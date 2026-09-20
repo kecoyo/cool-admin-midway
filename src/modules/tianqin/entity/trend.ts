@@ -18,8 +18,11 @@ export class TianqinTrendEntity extends BaseEntity {
   @Column({ comment: '状态', dict: ['禁用', '启用'], default: 1 })
   status: number;
 
-  @Column({ comment: '主力合约', nullable: true })
+  @Column({ comment: '主力合约代码', nullable: true })
   mainSymbol: string;
+
+  @Column({ comment: '主力合约名称', nullable: true })
+  contractName: string;
 
   @Column({
     comment: '当前价格',
