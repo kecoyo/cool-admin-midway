@@ -21,6 +21,9 @@ export class TianqinTrendEntity extends BaseEntity {
   @Column({ comment: '主力合约代码', nullable: true })
   mainSymbol: string;
 
+  @Column({ comment: '主力合约代码（不含交易所代码）', nullable: true })
+  contractCode: string;
+
   @Column({ comment: '主力合约名称', nullable: true })
   contractName: string;
 

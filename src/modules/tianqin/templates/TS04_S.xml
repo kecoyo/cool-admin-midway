@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <App>
-  <TradeUnit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" UnitName="[mainSymbol]_H1" PreFix="myunit" UnitVersion="1.0.0.0" TradeLock="false" RunLock="false" Expand="false" RefUnitID="">
+  <TradeUnit xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" UnitName="[contractCode]" PreFix="myunit" UnitVersion="1.0.0.0" TradeLock="false" RunLock="false" Expand="false" RefUnitID="">
     <Goods>
-      <G RefID="3c231dbf-bfb9-4ca8-a7d7-a9c4f51a83cd" lBeginTime="0" lEndTime="0">
+      <G RefID="4e7b9cb6-2243-4018-a56b-4368f49d60ad" lBeginTime="0" lEndTime="0">
         <GoodsSetting Source="User" Display="On" GoodsName="[contractName]">
           <DataRangeSetting FinishedStart="0" FinishedEnd="0" SampleValue="1000" SampleRangeUnit="Day" SampleUnitValue="1" EnableSampleEndDate="false">
-            <DataRange RangeType="BEGINEND" RangeUnit="0" RangeValue="20220401000000000" Term="Hour" NValue="1" EnableNValue="false">
-              <GoodsKey Goods="[mainSymbol]" Category="CategoryFutures" Exchange="DCE" nCodeID="-4088605213341146990" />
+            <DataRange RangeType="BEGINEND" RangeUnit="0" RangeValue="20250401000000000" Term="Hour" NValue="1" EnableNValue="false">
+              <GoodsKey Goods="[contractCode]" Category="CategoryFutures" Exchange="DCE" nCodeID="6498453282087474824" />
             </DataRange>
           </DataRangeSetting>
           <TradeSetting LongMargin="7.0000000000000009" ShortMargin="7.0000000000000009" CurrentPercent="0" MarginFlag="PercentOfTotalAccount" CommissionFlag="PercentOfTotalAccount" CommissionOpen="1" CommissionClose="1" CommissionCloseToday="1" SlipPointMode="PointByNum" SlipPointValue="0" />
@@ -35,10 +35,10 @@
         <TacticSetting Enabled="true" Loaded="false" bShow="true" EnableWarn="false" WarnType="0" WarnSettingID="0" WarnTimes="-1" SerVarRefCount="0" dWeight="1">
           <IsSelectedAllGoodsByDisplayStatus>false</IsSelectedAllGoodsByDisplayStatus>
           <Layers />
-          <Master IsHavePlotInfo="true" Code="TS04_L" Author="" Name="狮子量化交易系统-只做多" ShowMode="Main" ScaleMode="Relative" MaxBarBack="0" TacticsCategory="Formular" TacticsType="EStrategyType_UserFormula" IsFromDrawLine="false" FuncRetType="ReturnType_VOID" IsSrcCodeEmpty="false" IsSrcCodeInvisible="false" IsSightLess="false" IsHasTradeFunc="true" IsHasPickStokeFunc="false" GroupName="未分组">
+          <Master IsHavePlotInfo="true" Code="TS04_S" Author="" Name="狮子量化交易系统-只做空" ShowMode="Main" ScaleMode="Relative" MaxBarBack="0" TacticsCategory="Formular" TacticsType="EStrategyType_UserFormula" IsFromDrawLine="false" FuncRetType="ReturnType_VOID" IsSrcCodeEmpty="false" IsSrcCodeInvisible="false" IsSightLess="false" IsHasTradeFunc="true" IsHasPickStokeFunc="false" GroupName="未分组">
             <NativeStrategyKey>
               <author />
-              <strName>TS04_L</strName>
+              <strName>TS04_S</strName>
               <type>EStrategyType_UserFormula</type>
             </NativeStrategyKey>
           </Master>
@@ -69,7 +69,7 @@
           </Parameters>
           <Lines>
             <Line TacticsID="0" UserTacticsID="0" Code="Day_MA" IsShow="true" LineType="Line" LineWidth="1" LineStyle="LineType_Solid" ShowType="ShowType_Specific" PlotType="PlotNumeric" LineColorHtml="#FFB99600" />
-            <Line TacticsID="0" UserTacticsID="0" Code="MA2" IsShow="true" LineType="Line" LineWidth="2" LineStyle="LineType_Solid" ShowType="ShowType_Default" PlotType="PlotNumeric" LineColorHtml="#FFFF0000" />
+            <Line TacticsID="0" UserTacticsID="0" Code="MA1" IsShow="true" LineType="Line" LineWidth="2" LineStyle="LineType_Solid" ShowType="ShowType_Default" PlotType="PlotNumeric" LineColorHtml="#FF00FF00" />
             <Line TacticsID="0" UserTacticsID="0" Code="ema144" IsShow="true" LineType="Line" LineWidth="1" LineStyle="LineType_Solid" ShowType="ShowType_Specific" PlotType="PlotNumeric" LineColorHtml="#FF0096A0" />
             <Line TacticsID="0" UserTacticsID="0" Code="ema169" IsShow="true" LineType="Line" LineWidth="1" LineStyle="LineType_Solid" ShowType="ShowType_Specific" PlotType="PlotNumeric" LineColorHtml="#FFE600E6" />
             <Line TacticsID="0" UserTacticsID="0" Code="ema334" IsShow="true" LineType="Line" LineWidth="1" LineStyle="LineType_Solid" ShowType="ShowType_Specific" PlotType="PlotNumeric" LineColorHtml="#FF0000FF" />
