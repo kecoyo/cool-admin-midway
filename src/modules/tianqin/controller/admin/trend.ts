@@ -7,6 +7,7 @@ import { Context } from '@midwayjs/koa';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as AdmZip from 'adm-zip';
+import axios from 'axios';
 
 /**
  * 天勤趋势分析
@@ -145,5 +146,18 @@ export class AdminTianqinTrendController extends BaseController {
         // ignore
       }
     }, 5000);
+  }
+
+  /**
+   * 启动趋势分析任务
+   * 转发请求到 http://192.168.0.191:8002/api/trend_analysis
+   */
+  @Post('/startTask', { summary: '启动任务' })
+  async startTask() {
+    const res = await axios.post(
+      'http://192.168.0.191:8002/api/trend_analysis',
+      {}
+    );
+    return res.data;
   }
 }
