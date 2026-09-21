@@ -1,5 +1,5 @@
 import { TianqinTrendEntity } from '../../entity/trend';
-import { Body, Get, Inject, Post, Provide, Query } from '@midwayjs/core';
+import { Body, Inject, Post, Provide } from '@midwayjs/core';
 import { CoolController, BaseController } from '@cool-midway/core';
 import { TianqinTrendService } from '../../service/trend';
 import { pDataPath } from '../../../../comm/path';
@@ -36,6 +36,21 @@ export class AdminTianqinTrendController extends BaseController {
   ctx: Context;
 
   /**
+   * 根据行数据code字段解析模板占位符[code]
+   * code格式如 DCE.jd => jd，DCE.p => p9
+   * 规则：去掉"."前部分（含"."），剩余部分若为1位则补"9"凑够2位
+   */
+  private parseCode(code: string): string {
+    if (!code) return '';
+    const dotIndex = code.indexOf('.');
+    let suffix = dotIndex >= 0 ? code.substring(dotIndex + 1) : code;
+    if (suffix.length === 1) {
+      suffix = suffix + '9';
+    }
+    return suffix;
+  }
+
+  /**
    * 导出XML策略文件（打包成zip下载）
    * 查询条件与/page接口一致
    */
@@ -68,45 +83,39 @@ export class AdminTianqinTrendController extends BaseController {
     // 模板目录（模块内 templates）
     const templatesDir = path.join(__dirname, '..', '..', 'templates');
 
-    // 3. 遍历列表数据，根据trendDirection选择模板并生成XML文件
+    // 3. 遍历列表数据，根据trendDirection选择模板文件，直接复制到临时目录
     const zip = new AdmZip();
 
     for (const item of list) {
       const trendDirection = item.trendDirection || '';
 
-      // 上涨使用L模板，下跌使用S模板，其它忽略
-      let isUp: boolean;
+      // 上涨使用TS04_L模板，下跌使用TS04_S模板，其它忽略
+      let subDir: string;
+      let prefix: string;
       if (trendDirection.includes('上涨')) {
-        isUp = true;
+        subDir = 'TS04_L';
+        prefix = 'myunit';
       } else if (trendDirection.includes('下跌')) {
-        isUp = false;
+        subDir = 'TS04_S';
+        prefix = 'myunit';
       } else {
         continue;
       }
 
-      // 选择模板文件
-      const templateName = isUp ? 'TS04_L.xml' : 'TS04_S.xml';
-      const templatePath = path.join(templatesDir, templateName);
+      // 解析code占位符
+      const code = this.parseCode(item.code || '');
+
+      // 构建模板文件路径：TS04_L/TS04_L_[code]888_H1.xml
+      const templateFileName = `${prefix}_${code}888_H1.xml`;
+      const templatePath = path.join(templatesDir, subDir, templateFileName);
 
       if (!fs.existsSync(templatePath)) {
         continue;
       }
 
-      let content = fs.readFileSync(templatePath, 'utf-8');
-
-      // 替换模板内容中的占位符
-      const contractCode = item.contractCode || '';
-      const contractName = item.contractName || '';
-      content = content
-        .replace(/\[contractCode\]/g, contractCode)
-        .replace(/\[contractName\]/g, contractName);
-
-      // 生成输出文件名（替换占位符）
-      const outputFileName = `myunit_${contractCode}.xml`;
-
-      // 写入XML文件到临时目录
-      const outputFilePath = path.join(outputDir, outputFileName);
-      fs.writeFileSync(outputFilePath, content, 'utf-8');
+      // 直接复制模板文件到临时目录
+      const outputFilePath = path.join(outputDir, templateFileName);
+      fs.copyFileSync(templatePath, outputFilePath);
 
       // 添加到zip
       zip.addLocalFile(outputFilePath);
