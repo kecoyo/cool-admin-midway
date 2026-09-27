@@ -12,14 +12,20 @@ export class TianqinDataEntity extends BaseEntity {
   @Column({ comment: '品种名称', unique: true })
   name: string;
 
-  @Column({ comment: '备注', length: 1000, nullable: true })
-  remark: string;
-
   @Column({ comment: '状态', dict: ['禁用', '启用'], default: 1 })
   status: number;
 
-  @Column({ comment: '主力合约', nullable: true })
+  @Column({ comment: '备注', length: 1000, nullable: true })
+  remark: string;
+
+  @Column({ comment: '主力合约代码', nullable: true })
   mainSymbol: string;
+
+  @Column({ comment: '主力合约代码（不含交易所代码）', nullable: true })
+  contractCode: string;
+
+  @Column({ comment: '主力合约名称', nullable: true })
+  contractName: string;
 
   @Column({
     comment: '当前价格',

@@ -14,7 +14,7 @@ import axios from 'axios';
   service: TianqinDataService,
   pageQueryOp: {
     fieldEq: ['trend', 'band', 'status'],
-    keyWordLikeFields: ['code', 'name', 'mainSymbol'],
+    keyWordLikeFields: ['mainSymbol', 'contractName', 'remark'],
   },
 })
 export class AdminTianqinDataController extends BaseController {

@@ -20,10 +20,9 @@ import axios from 'axios';
   pageQueryOp: {
     fieldEq: ['trendDirection', 'trendState', 'status'],
     keyWordLikeFields: [
-      'code',
-      'name',
-      'remark',
       'mainSymbol',
+      'contractName',
+      'remark',
       'action',
       'actionDetail',
     ],
@@ -61,8 +60,8 @@ export class AdminTianqinTrendController extends BaseController {
     const list = await this.tianqinTrendService.list(query, {
       fieldEq: ['trendDirection', 'trendState', 'status'],
       keyWordLikeFields: [
-        'code',
-        'name',
+        'mainSymbol',
+        'contractName',
         'remark',
         'mainSymbol',
         'action',
