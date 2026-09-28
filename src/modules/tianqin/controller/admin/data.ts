@@ -13,7 +13,7 @@ import axios from 'axios';
   entity: TianqinDataEntity,
   service: TianqinDataService,
   pageQueryOp: {
-    fieldEq: ['trend', 'band', 'status'],
+    fieldEq: ['dayTrendDirection', 'dayTrendState', 'status'],
     keyWordLikeFields: ['mainSymbol', 'contractName', 'remark'],
   },
 })
