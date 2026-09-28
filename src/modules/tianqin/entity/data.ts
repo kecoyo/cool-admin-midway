@@ -36,32 +36,17 @@ export class TianqinDataEntity extends BaseEntity {
   })
   price: number;
 
-  @Column({ comment: '趋势方向', nullable: true })
+  @Column({ comment: '周趋势方向', nullable: true })
+  weekTrendDirection: string;
+
+  @Column({ comment: '周当前状态', nullable: true })
+  weekTrendState: string;
+
+  @Column({ comment: '日趋势方向', nullable: true })
   dayTrendDirection: string;
 
-  @Column({ comment: '当前状态', nullable: true })
+  @Column({ comment: '日当前状态', nullable: true })
   dayTrendState: string;
-
-  @Column({ comment: 'KDJ信号', nullable: true })
-  dayKdjSignal: string;
-
-  @Column({
-    comment: 'KDJ值',
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
-    nullable: true,
-  })
-  dayKdjValue: number;
-
-  @Column({
-    comment: 'CCI值',
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
-    nullable: true,
-  })
-  dayCciValue: number;
 
   @Column({ comment: '小时趋势方向', nullable: true })
   hourTrendDirection: string;
@@ -75,13 +60,7 @@ export class TianqinDataEntity extends BaseEntity {
   })
   hourCciValue: number;
 
-  @Column({ comment: '周线趋势方向', nullable: true })
-  weekTrendDirection: string;
-
-  @Column({ comment: '周线当前状态', nullable: true })
-  weekTrendState: string;
-
-  @Column({ comment: '周线KDJ信号', nullable: true })
+  @Column({ comment: '周KDJ信号', nullable: true })
   weekKdjSignal: string;
 
   @Column({
@@ -93,9 +72,24 @@ export class TianqinDataEntity extends BaseEntity {
   })
   weekKdjValue: number;
 
-  @Column({ comment: '周线多空趋势', nullable: true })
-  weekLongShortTrend: string;
+  @Column({ comment: '日KDJ信号', nullable: true })
+  dayKdjSignal: string;
 
-  @Column({ comment: '周线多空状态', nullable: true })
-  weekLongShortState: string;
+  @Column({
+    comment: '日KDJ值',
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    nullable: true,
+  })
+  dayKdjValue: number;
+
+  @Column({
+    comment: '日CCI值',
+    type: 'decimal',
+    precision: 10,
+    scale: 2,
+    nullable: true,
+  })
+  dayCciValue: number;
 }

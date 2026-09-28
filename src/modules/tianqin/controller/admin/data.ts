@@ -6,6 +6,9 @@ import axios from 'axios';
 
 /**
  * 天勤数据分析
+ * 
+: 
+
  */
 @Provide()
 @CoolController({
@@ -13,7 +16,14 @@ import axios from 'axios';
   entity: TianqinDataEntity,
   service: TianqinDataService,
   pageQueryOp: {
-    fieldEq: ['dayTrendDirection', 'dayTrendState', 'status'],
+    fieldEq: [
+      'weekTrendDirection',
+      'weekTrendState',
+      'dayTrendDirection',
+      'dayTrendState',
+      'hourTrendDirection',
+      'status',
+    ],
     keyWordLikeFields: ['mainSymbol', 'contractName', 'remark'],
   },
 })
