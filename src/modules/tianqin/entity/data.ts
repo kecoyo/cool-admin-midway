@@ -42,35 +42,35 @@ export class TianqinDataEntity extends BaseEntity {
   @Column({ comment: '周当前状态', nullable: true })
   weekTrendState: string;
 
-  @Column({ comment: '日趋势方向', nullable: true })
-  dayTrendDirection: string;
+  @Column({ comment: '周MACD趋势方向', nullable: true })
+  weekMacdTrendDirection: string;
 
-  @Column({ comment: '日当前状态', nullable: true })
-  dayTrendState: string;
-
-  @Column({ comment: '小时趋势方向', nullable: true })
-  hourTrendDirection: string;
-
-  @Column({
-    comment: '小时CCI值',
-    type: 'decimal',
-    precision: 10,
-    scale: 2,
-    nullable: true,
-  })
-  hourCciValue: number;
+  @Column({ comment: '周MACD当前状态', nullable: true })
+  weekMacdTrendState: string;
 
   @Column({ comment: '周KDJ信号', nullable: true })
   weekKdjSignal: string;
 
   @Column({
-    comment: '周线KDJ值',
+    comment: '周KDJ值',
     type: 'decimal',
     precision: 10,
     scale: 2,
     nullable: true,
   })
   weekKdjValue: number;
+
+  @Column({ comment: '日趋势方向', nullable: true })
+  dayTrendDirection: string;
+
+  @Column({ comment: '日当前状态', nullable: true })
+  dayTrendState: string;
+
+  @Column({ comment: '日MACD趋势方向', nullable: true })
+  dayMacdTrendDirection: string;
+
+  @Column({ comment: '日MACD当前状态', nullable: true })
+  dayMacdTrendState: string;
 
   @Column({ comment: '日KDJ信号', nullable: true })
   dayKdjSignal: string;
@@ -84,12 +84,15 @@ export class TianqinDataEntity extends BaseEntity {
   })
   dayKdjValue: number;
 
+  @Column({ comment: '小时趋势方向', nullable: true })
+  hourTrendDirection: string;
+
   @Column({
-    comment: '日CCI值',
+    comment: '小时CCI值',
     type: 'decimal',
     precision: 10,
     scale: 2,
     nullable: true,
   })
-  dayCciValue: number;
+  hourCciValue: number;
 }
