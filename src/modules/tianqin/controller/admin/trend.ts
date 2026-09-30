@@ -74,14 +74,14 @@ export class AdminTianqinTrendController extends BaseController {
     }
 
     // 2. 准备临时输出目录，清除上次生成的文件
-    const outputDir = path.join(pDataPath(), 'tianqin-export');
+    const outputDir = path.join(pDataPath(), 'tianqin-trend-export');
     if (fs.existsSync(outputDir)) {
       fs.rmSync(outputDir, { recursive: true });
     }
     fs.mkdirSync(outputDir, { recursive: true });
 
     // 模板目录（模块内 templates）
-    const templatesDir = path.join(__dirname, '..', '..', 'templates');
+    const templatesDir = path.join(pDataPath(), 'tianqin-templates');
 
     // 3. 遍历列表数据，根据trendDirection选择模板文件，直接复制到临时目录
     const zip = new AdmZip();
@@ -93,10 +93,10 @@ export class AdminTianqinTrendController extends BaseController {
       let subDir: string;
       let prefix: string;
       if (trendDirection.includes('上涨')) {
-        subDir = 'TS04_L';
+        subDir = 'Long';
         prefix = 'myunit';
       } else if (trendDirection.includes('下跌')) {
-        subDir = 'TS04_S';
+        subDir = 'Short';
         prefix = 'myunit';
       } else {
         continue;
