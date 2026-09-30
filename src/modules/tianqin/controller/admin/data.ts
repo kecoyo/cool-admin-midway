@@ -74,26 +74,77 @@ export class AdminTianqinDataController extends BaseController {
     const zip = new AdmZip();
 
     for (const item of list) {
-      const trendDirection = item.hourTrendDirection || '';
+      // 条件过滤
+      const weekDir = item.weekTrendDirection || '';
+      const weekState = item.weekTrendState || '';
+      const weekMacdDir = item.weekMacdTrendDirection || '';
+      const weekMacdState = item.weekMacdTrendState || '';
+      const dayDir = item.dayTrendDirection || '';
+      const dayMacdDir = item.dayMacdTrendDirection || '';
+      const dayState = item.dayTrendState || '';
+      const dayMacdState = item.dayMacdTrendState || '';
+      const dayKdjSignal = item.dayKdjSignal || '';
+      const hourDir = item.hourTrendDirection || '';
 
-      // 上涨使用Long模板，下跌使用Short模板，其它忽略
+      let isLong = false;
+      let isShort = false;
+
+      // 多头：dayTrendDirection=多头 and dayMacdTrendDirection=多头
+      // 且（dayTrendState=多头, dayMacdTrendState=多头, dayKdjSignal=金叉）至少成立两个
+      if (
+        weekDir === '多头' &&
+        weekState === '多头' &&
+        dayDir === '多头' &&
+        hourDir === '多头'
+      ) {
+        let count = 0;
+        if (dayState === '多头') count++;
+        if (dayMacdState === '多头') count++;
+        if (dayKdjSignal === '金叉') count++;
+        if (count >= 2) {
+          isLong = true;
+        }
+      }
+
+      // 空头：dayTrendDirection=空头 and dayMacdTrendDirection=空头
+      // 且（dayTrendState=空头, dayMacdTrendState=空头, dayKdjSignal=死叉）至少成立两个
+      if (
+        !isLong &&
+        weekDir === '空头' &&
+        weekState === '空头' &&
+        dayDir === '空头' &&
+        hourDir === '空头'
+      ) {
+        let count = 0;
+        if (dayState === '空头') count++;
+        if (dayMacdState === '空头') count++;
+        if (dayKdjSignal === '死叉') count++;
+        if (count >= 2) {
+          isShort = true;
+        }
+      }
+
+      // 其它都跳过
+      if (!isLong && !isShort) {
+        continue;
+      }
+
+      // 多头使用Long模板，空头使用Short模板
       let subDir: string;
       let prefix: string;
-      if (trendDirection.includes('多头')) {
+      if (isLong) {
         subDir = 'Long';
-        prefix = 'myunit';
-      } else if (trendDirection.includes('空头')) {
-        subDir = 'Short';
-        prefix = 'myunit';
+        prefix = 'TS05_myunit';
       } else {
-        continue;
+        subDir = 'Short';
+        prefix = 'TS05_myunit';
       }
 
       // 解析code占位符
       const code = this.parseCode(item.code || '');
 
-      // 构建模板文件路径：Long/myunit_[code]888_H1.xml
-      const templateFileName = `${prefix}_${code}888_H1.xml`;
+      // 构建模板文件路径：Long/myunit_[code]888.tuf
+      const templateFileName = `${prefix}_${code}888.tuf`;
       const templatePath = path.join(templatesDir, subDir, templateFileName);
 
       if (!fs.existsSync(templatePath)) {
