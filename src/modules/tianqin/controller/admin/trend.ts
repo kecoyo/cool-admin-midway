@@ -91,13 +91,10 @@ export class AdminTianqinTrendController extends BaseController {
 
       // 上涨使用TS04_L模板，下跌使用TS04_S模板，其它忽略
       let subDir: string;
-      let prefix: string;
       if (trendDirection.includes('上涨')) {
         subDir = 'Long';
-        prefix = 'myunit';
       } else if (trendDirection.includes('下跌')) {
         subDir = 'Short';
-        prefix = 'myunit';
       } else {
         continue;
       }
@@ -105,8 +102,8 @@ export class AdminTianqinTrendController extends BaseController {
       // 解析code占位符
       const code = this.parseCode(item.code || '');
 
-      // 构建模板文件路径：TS04_L/TS04_L_[code]888_H1.xml
-      const templateFileName = `${prefix}_${code}888_H1.xml`;
+      // 构建模板文件路径：Long/TS05_myunit_[code]888.tuf
+      const templateFileName = `TS05_myunit_${code}888.tuf`;
       const templatePath = path.join(templatesDir, subDir, templateFileName);
 
       if (!fs.existsSync(templatePath)) {

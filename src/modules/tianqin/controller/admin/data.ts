@@ -131,20 +131,17 @@ export class AdminTianqinDataController extends BaseController {
 
       // 多头使用Long模板，空头使用Short模板
       let subDir: string;
-      let prefix: string;
       if (isLong) {
         subDir = 'Long';
-        prefix = 'TS05_myunit';
       } else {
         subDir = 'Short';
-        prefix = 'TS05_myunit';
       }
 
       // 解析code占位符
       const code = this.parseCode(item.code || '');
 
-      // 构建模板文件路径：Long/myunit_[code]888.tuf
-      const templateFileName = `${prefix}_${code}888.tuf`;
+      // 构建模板文件路径：Long/TS05_myunit_[code]888.tuf
+      const templateFileName = `TS05_myunit_${code}888.tuf`;
       const templatePath = path.join(templatesDir, subDir, templateFileName);
 
       if (!fs.existsSync(templatePath)) {
