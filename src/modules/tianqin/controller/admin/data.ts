@@ -77,20 +77,16 @@ export class AdminTianqinDataController extends BaseController {
       // 条件过滤
       const weekDir = item.weekTrendDirection || '';
       const weekState = item.weekTrendState || '';
-      const weekMacdDir = item.weekMacdTrendDirection || '';
-      const weekMacdState = item.weekMacdTrendState || '';
       const dayDir = item.dayTrendDirection || '';
-      const dayMacdDir = item.dayMacdTrendDirection || '';
       const dayState = item.dayTrendState || '';
-      const dayMacdState = item.dayMacdTrendState || '';
       const dayKdjSignal = item.dayKdjSignal || '';
       const hourDir = item.hourTrendDirection || '';
 
       let isLong = false;
       let isShort = false;
 
-      // 多头：dayTrendDirection=多头 and dayMacdTrendDirection=多头
-      // 且（dayTrendState=多头, dayMacdTrendState=多头, dayKdjSignal=金叉）至少成立两个
+      // 多头：weekDir=多头 and weekState=多头 and dayDir=多头 and hourDir=多头
+      // 且（dayState=多头, dayKdjSignal=金叉）至少成立一个
       if (
         weekDir === '多头' &&
         weekState === '多头' &&
@@ -99,15 +95,14 @@ export class AdminTianqinDataController extends BaseController {
       ) {
         let count = 0;
         if (dayState === '多头') count++;
-        if (dayMacdState === '多头') count++;
         if (dayKdjSignal === '金叉') count++;
-        if (count >= 2) {
+        if (count >= 1) {
           isLong = true;
         }
       }
 
-      // 空头：dayTrendDirection=空头 and dayMacdTrendDirection=空头
-      // 且（dayTrendState=空头, dayMacdTrendState=空头, dayKdjSignal=死叉）至少成立两个
+      // 空头：weekDir=空头 and weekState=空头 and dayDir=空头 and hourDir=空头
+      // 且（dayState=空头, dayKdjSignal=死叉）至少成立一个
       if (
         !isLong &&
         weekDir === '空头' &&
@@ -117,9 +112,8 @@ export class AdminTianqinDataController extends BaseController {
       ) {
         let count = 0;
         if (dayState === '空头') count++;
-        if (dayMacdState === '空头') count++;
         if (dayKdjSignal === '死叉') count++;
-        if (count >= 2) {
+        if (count >= 1) {
           isShort = true;
         }
       }

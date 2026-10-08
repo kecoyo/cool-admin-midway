@@ -42,12 +42,6 @@ export class TianqinDataEntity extends BaseEntity {
   @Column({ comment: '周当前状态', nullable: true })
   weekTrendState: string;
 
-  @Column({ comment: '周MACD趋势方向', nullable: true })
-  weekMacdTrendDirection: string;
-
-  @Column({ comment: '周MACD当前状态', nullable: true })
-  weekMacdTrendState: string;
-
   @Column({ comment: '周KDJ信号', nullable: true })
   weekKdjSignal: string;
 
@@ -65,12 +59,6 @@ export class TianqinDataEntity extends BaseEntity {
 
   @Column({ comment: '日当前状态', nullable: true })
   dayTrendState: string;
-
-  @Column({ comment: '日MACD趋势方向', nullable: true })
-  dayMacdTrendDirection: string;
-
-  @Column({ comment: '日MACD当前状态', nullable: true })
-  dayMacdTrendState: string;
 
   @Column({ comment: '日KDJ信号', nullable: true })
   dayKdjSignal: string;
