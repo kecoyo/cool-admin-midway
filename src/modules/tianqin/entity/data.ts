@@ -83,4 +83,7 @@ export class TianqinDataEntity extends BaseEntity {
     nullable: true,
   })
   hourCciValue: number;
+
+  @Column({ comment: '交易设置', type: 'text', nullable: true })
+  tradeSettings: string;
 }
